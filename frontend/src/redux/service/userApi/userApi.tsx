@@ -18,6 +18,10 @@ export const userApi = createApi({
       query: () => "/secure/api/v1/fetch_user",
       providesTags: ["User"],
     }),
+    getValidateEmail: builder.query({
+      query: (email) => "/secure/api/v1/email",
+      providesTags: ["User"],
+    }),
     // for auth user
     addUser: builder.mutation({
       query: (body) => ({
@@ -42,4 +46,5 @@ export const {
   useGetLoginUserQuery,
   useAddUserMutation,
   useAddLoginMutation,
+  useGetValidateEmailQuery
 } = userApi;

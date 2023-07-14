@@ -1,0 +1,59 @@
+@import "../abstract/variables";
+@import "../responsive/breakpoints";
+
+.for_download_handle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.download-menu {
+  position: absolute;
+  right: 21px;
+  z-index: 990;
+  top: 8px;
+  background: $bg-white;
+  padding: 3px 2px;
+  border-radius: 3px;
+  border: $border-header;
+  transform: translateX(138%);
+  transition: all 0.3s ease-in-out;
+  .setting_icon {
+    position: absolute;
+    left: -25px;
+    top: 3px;
+    cursor: pointer;
+    user-select: none;
+    svg {
+      font-size: 21px;
+    }
+  }
+  ul {
+    list-style: none;
+    li {
+      .download_menu_icon {
+        padding: 10px;
+        font-size: 16px;
+        background: $bg-thin-green;
+        color: $text_front_purple;
+        border-radius: 50%;
+        color: #fff;
+        font-weight: 900;
+        cursor: pointer;
+        margin: 0px 5px;
+        box-shadow: $box-shadow;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+    .download_pdf_hidden{
+      @include breakpoints(semiMiniTablet){
+        display: none;
+      }
+    }
+  }
+}
+.activePlette {
+  transform: translateX(36%) !important;
+  transition: all 0.3s ease-in-out;
+}

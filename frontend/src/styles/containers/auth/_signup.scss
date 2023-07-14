@@ -1,0 +1,240 @@
+@import "../../responsive/breakpoints";
+.rf_dashboard_register_page_wrapper {
+  padding-top: 130px;
+  padding-bottom: 80px;
+  background-color: #7fbcd2;
+  .rf_dashboard_register_card {
+    padding: 25px;
+    min-height: 250px;
+    width: 30%;
+    margin: auto;
+    @include breakpoints(laptop) {
+      width: 50%;
+    }
+    @include breakpoints(tablet) {
+      width: 70%;
+    }
+    @include breakpoints(largeMobile) {
+      width: 80%;
+    }
+    .rf_section_title {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #4a4a69;
+      h2 {
+        font-size: 30px;
+        @include breakpoints(laptop) {
+          font-size: 25px;
+        }
+        @include breakpoints(tablet) {
+          font-size: 20px;
+        }
+      }
+    }
+    .login_page_social_icon {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      .social_icon {
+        list-style-type: none;
+        padding: 0 15px;
+        font-size: 28px;
+        color: rgb(155, 150, 150);
+        cursor: pointer;
+      }
+      .facebook {
+        &:hover {
+          color: #1877f2;
+        }
+      }
+      .twitter {
+        &:hover {
+          color: #25d366;
+        }
+      }
+      .instagram {
+        &:hover {
+          color: #e4405f;
+        }
+      }
+      .youtube {
+        &:hover {
+          color: #cd201f;
+        }
+      }
+    }
+    .hr_border {
+      height: 2px;
+      width: 100%;
+      background-color: #7b5eeaa6;
+      margin-bottom: 5px;
+    }
+    .rf_dashboard_register_content {
+      form {
+        .form_group {
+          margin: 15px 0;
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          @include breakpoints(portraitTablet) {
+            grid-template-columns: repeat(1, 1fr);
+            grid-row-gap: 12px;
+          }
+          .PhoneInput--focus {
+            background-color: rgba(123, 94, 234, 0.7) !important;
+            color: #fff !important;
+          }
+          .PhoneInput {
+            padding: 9px 6px !important;
+            border-radius: 3px !important;
+            background-color: rgba(123, 94, 234, 0.08);
+            border: none !important;
+            &:focus {
+              background-color: rgba(123, 94, 234, 0.7);
+              color: #fff;
+              &::placeholder {
+                color: #fff;
+              }
+            }
+            input {
+              border: none !important;
+              background-color: rgb(123 94 234 / 0%);
+              outline: none !important;
+              &:focus {
+                // background-color: rgba(123, 94, 234, 0.7);
+                color: #fff;
+                &::placeholder {
+                  color: #fff;
+                }
+              }
+
+              &::placeholder {
+                text-transform: uppercase;
+                color: #9fa4a6;
+                font-size: 11px;
+              }
+            }
+          }
+          .right {
+            margin-right: 19px;
+          }
+          .left {
+            margin-right: 25px;
+          }
+          label {
+            color: #4a4a69;
+            font-size: 15px;
+            font-weight: 600;
+            @include breakpoints(tablet) {
+              font-size: 14px;
+            }
+          }
+          .input_field {
+            width: 100%;
+            padding: 10px 8px;
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            color: #9fa4a6;
+            background-color: rgba(123, 94, 234, 0.08);
+            &:focus {
+              background-color: rgba(123, 94, 234, 0.7);
+              color: #fff;
+              &::placeholder {
+                color: #fff;
+              }
+            }
+            &:active {
+              background-color: rgba(123, 94, 234, 0.7);
+              color: #fff;
+            }
+            &::placeholder {
+              text-transform: uppercase;
+              color: #9fa4a6;
+              font-size: 11px;
+            }
+          }
+          .OTP_input_field {
+            width: 100% !important;
+            overflow-y: hidden;
+          }
+          input:-webkit-autofill {
+            background-color: rgba(123, 94, 234, 0.7) !important;
+          }
+        }
+        .form_group_OTP {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 7fr 3fr;
+          @include breakpoints(mdlgMobile) {
+            grid-template-columns: 3fr 2fr;
+          }
+          gap: 5px;
+          .OTP_resend_btn {
+            background-color: #7b5eea;
+            // padding: 8px 12px;
+            height: 36px;
+            align-self: flex-end;
+            white-space: nowrap;
+            border-radius: 3px;
+            border: none;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            @include breakpoints(mdlgMobile) {
+              font-size: 12px;
+            }
+            &:hover {
+              background-color: #7b5eeaa6;
+              box-shadow: $box-shadow;
+            }
+          }
+        }
+        .submit_btn {
+          background-color: #7b5eea;
+          padding: 10px 12px;
+          width: 100%;
+          border-radius: 3px;
+          border: none;
+          font-size: 15px;
+          font-weight: 600;
+          text-transform: capitalize;
+          color: #fff;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+          margin-top: 10px !important;
+          &:hover {
+            background-color: #7b5eeaa6;
+            box-shadow: $box-shadow;
+          }
+        }
+        .go_to_login {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 15px;
+          text-align: center;
+          p {
+            color: #000;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0px 5px;
+            a {
+              color: #7a5eeaf8 !important;
+            }
+          }
+          .log_page_nav_link {
+            &:hover {
+              border-bottom: 2px solid #7b5eea;
+              color: #7b5eea;
+            }
+          }
+        }
+        .login_nav_break_point {
+          color: #7a5eeaf8 !important;
+        }
+      }
+    }
+  }
+}

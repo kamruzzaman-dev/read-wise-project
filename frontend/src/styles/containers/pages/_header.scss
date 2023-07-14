@@ -1,0 +1,342 @@
+@import "../../responsive/breakpoints";
+// stiky header css
+.sticky {
+  background-color: #0e0524 !important;
+  transition: all 0.3s ease-in-out;
+}
+.life_care_project_frontpage_header_wrapper {
+  background-color: transparent;
+  position: fixed;
+  width: 100%;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.3s ease-in-out;
+  padding: 0px 0px;
+  background-color: #0e0524 !important;
+  @include breakpoints(miniSemiTablet) {
+    background-color: #0e0524 !important;
+  }
+  .toggler_icon {
+    display: none;
+    @include breakpoints(miniSemiTablet) {
+      display: block;
+      margin-right: 15px;
+      svg {
+        color: #fff;
+        font-size: 20px;
+      }
+    }
+  }
+  .life_care_project_front_navbar {
+    padding: 5px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .life_care_project_front_logo {
+      // background-color: #fff;
+      // border-radius: 100%;
+      @include breakpoints(miniSemiTablet) {
+        background-color: rgba(255, 255, 255, 0);
+        border-radius: none;
+        width: 100%;
+        border-radius: 0%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        h2 {
+          color: #fff;
+        }
+      }
+      .life_care_project_front_navbar_lists2 {
+        display: none;
+        @include breakpoints(miniSemiTablet) {
+          display: inline-block;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+        }
+        list-style: none;
+        .life_care_project_front_navbar_list2 {
+          display: inline-block;
+          margin-left: 0px;
+          .life_care_project_front_nav_link2 {
+            font-size: 18px;
+            padding: 12px;
+            font-weight: 600;
+            color: #fff;
+            transition: all 0.3s ease-in-out;
+            @media screen and (max-width: 402px) {
+              font-size: 15px;
+              padding: 13px;
+              font-weight: 600;
+            }
+            @include breakpoints(mobile) {
+              font-size: 12px;
+              padding: 6px;
+              font-weight: 600;
+            }
+          }
+        }
+        .user_toggler {
+          margin-left: 10px;
+          position: relative;
+          .icon {
+            border: 1px solid #eee;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            padding: 5px;
+            box-shadow: 0px 4px 10px -9px #c4a50c;
+            cursor: pointer;
+            @include breakpoints(semiPortraitTablet) {
+              width: 22px;
+              height: 22px;
+            }
+            svg {
+              font-size: 25px;
+              color: #c4a50c;
+            }
+          }
+          .user_menu_list {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 140px;
+            height: auto;
+            background: white;
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 3px;
+            box-shadow: 0px 4px 9px -8px grey;
+            ul {
+              list-style: none;
+              li {
+                a {
+                  text-decoration: none;
+                  font-size: 14px !important;
+                  color: #c4a50c;
+                  display: block;
+                  padding: 5px 10px;
+                  &:hover {
+                    background: #d3cfbb;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    @include breakpoints(miniSemiTablet) {
+      justify-content: start;
+    }
+    h2 {
+      color: #d3cfbb;
+    }
+
+    .toggle_navbar {
+      @include breakpoints(miniSemiTablet) {
+        height: 220px !important;
+        opacity: 1 !important;
+        transition: all 0.3s ease-in-out !important;
+        transform: scaleY(1.1) !important;
+        background: #0e0524 !important;
+        transform-origin: top !important;
+      }
+    }
+    .life_care_project_front_navbar_menu {
+      transition: all 0.3s ease-in-out;
+      @include breakpoints(miniSemiTablet) {
+        position: absolute;
+        top: 105px;
+        width: 100%;
+        background: #0e0524;
+        left: 0;
+        height: 0px;
+        opacity: 0;
+        border-top: 2px solid #7b5eea;
+        transition: all 0.3s ease-in-out;
+        transform: scaleY(0);
+      }
+      @include breakpoints(mdlgMobile) {
+        top: 75px;
+      }
+      .life_care_project_front_navbar_lists {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        @include breakpoints(miniSemiTablet) {
+          margin-left: 15px !important;
+          display: inherit;
+        }
+        @include breakpoints(mdlgMobile) {
+          margin-left: 10px !important;
+        }
+        .life_care_project_front_navbar_list {
+          display: inline-block;
+          margin-left: 15px;
+          @include breakpoints(semiTablet) {
+            margin-left: 5px !important;
+          }
+          @include breakpoints(miniSemiTablet) {
+            display: inherit !important;
+            margin: 13px 30px !important;
+          }
+          .sub-menu-l {
+            display: none;
+            position: absolute;
+            top: 64px !important;
+          }
+          &:hover {
+            .sub-menu-l {
+              display: block !important;
+              position: absolute;
+              background-color: rgba(28, 28, 85, 0.79);
+              // margin-top: 15px;
+              margin-left: 0px;
+              // top: 50px;
+              @include breakpoints(miniSemiTablet) {
+                top: 190px !important;
+              }
+              ul {
+                list-style: none;
+                margin: 0px;
+                @include breakpoints(miniSemiTablet) {
+                  text-align: center;
+                }
+                li {
+                  padding: 10px 30px;
+                  // pointer-events:none;
+                  cursor: pointer;
+                  &:hover {
+                    background-color: #ae989877;
+                    // border-bottom: 2px solid #e8c743;
+                    // color: #e8c743;
+                  }
+                  a {
+                    // padding: 0px 15px;
+                    font-size: 12px;
+                    border-bottom: 2px solid rgba(0, 0, 0, 0);
+                    @include breakpoints(largeMobile) {
+                      padding: 8px;
+                    }
+                    color: #fff;
+                    &:hover {
+                      border-bottom: 2px solid #e8c743;
+                      color: #e8c743;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .life_care_project_front_nav_link {
+            font-size: 13px;
+            font-weight: 600;
+            color: #c4a50c;
+            padding: 10px;
+            @include breakpoints(semiTablet) {
+              padding: 10px 8px;
+            }
+            // background-color: red;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              border-bottom: 2px solid #7b5eea;
+            }
+          }
+          .wishlist {
+            border: 1px solid #eee;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            padding: 5px;
+            box-shadow: 0px 4px 10px -9px #c4180c;
+            cursor: pointer;
+            @include breakpoints(semiPortraitTablet) {
+              width: 22px;
+              height: 22px;
+            }
+            svg {
+              font-size: 25px;
+              color: #c4120c;
+            }
+          }
+          .active {
+            border-bottom: 2px solid #7b5eea;
+            color: #7b5eea;
+          }
+        }
+        .user_toggler {
+          margin-left: 10px;
+          position: relative;
+          .icon {
+            border: 1px solid #eee;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            padding: 5px;
+            box-shadow: 0px 4px 10px -9px #c4a50c;
+            cursor: pointer;
+            @include breakpoints(semiPortraitTablet) {
+              width: 22px;
+              height: 22px;
+            }
+            svg {
+              font-size: 25px;
+              color: #c4a50c;
+            }
+          }
+          .user_menu_list {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 140px;
+            height: auto;
+            background: white;
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 3px;
+            box-shadow: 0px 4px 9px -8px grey;
+            ul {
+              list-style: none;
+              li {
+                a {
+                  text-decoration: none;
+                  font-size: 14px !important;
+                  color: #c4a50c;
+                  display: block;
+                  padding: 5px 10px;
+                  &:hover {
+                    background: #d3cfbb;
+                  }
+                }
+              }
+            }
+          }
+          @include breakpoints(miniSemiTablet) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}

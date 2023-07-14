@@ -1,0 +1,287 @@
+@import "../../responsive/breakpoints";
+.rf_dashboard_login_page_wrapper {
+  height: 100vh;
+  background-color: #7fbcd2;
+  padding-top: 108px;
+  padding-bottom: 120px;
+  @include breakpoints(largeMobile) {
+    height: auto;
+  }
+  .rf_dashboard_login_card {
+    padding: 25px;
+    min-height: 250px;
+    width: 30%;
+    margin: auto;
+    @include breakpoints(laptop) {
+      width: 50%;
+    }
+    @include breakpoints(tablet) {
+      width: 70%;
+    }
+    @include breakpoints(largeMobile) {
+      width: 80%;
+    }
+    .login_page_social_icon {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      .social_icon {
+        list-style-type: none;
+        padding: 0 15px;
+        font-size: 28px;
+        color: rgb(155, 150, 150);
+        cursor: pointer;
+      }
+      .facebook {
+        &:hover {
+          color: #1877f2;
+        }
+      }
+      .twitter {
+        &:hover {
+          color: #25d366;
+        }
+      }
+      .instagram {
+        &:hover {
+          color: #e4405f;
+        }
+      }
+      .youtube {
+        &:hover {
+          color: #cd201f;
+        }
+      }
+    }
+    .hr_border {
+      height: 2px;
+      width: 100%;
+      background-color: #7b5eeaa6;
+      margin-bottom: 5px;
+    }
+    .rf_section_title {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #000;
+      h2 {
+        color: #4a4a69;
+        font-size: 25px;
+        @include breakpoints(tablet) {
+          font-size: 20px;
+        }
+      }
+    }
+    .rf_dashboard_login_content {
+      form {
+        .form_group {
+          margin: 15px 0;
+          position: relative;
+          .input_group {
+            position: relative;
+          }
+          span {
+            position: absolute;
+            top: 32px;
+            right: 8px;
+            z-index: 999;
+            font-size: 20px;
+            svg {
+              color: #fff;
+            }
+          }
+          .right {
+            margin-right: 19px;
+          }
+          label {
+            color: #4a4a69;
+            font-size: 15px;
+            font-weight: 600;
+            @include breakpoints(tablet) {
+              font-size: 14px;
+            }
+          }
+          .input_field {
+            width: 100%;
+            padding: 10px 8px;
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            background-color: rgba(123, 94, 234, 0.08);
+            color: #9fa4a6;
+            &:focus {
+              background-color: rgba(123, 94, 234, 0.7);
+              color: #fff;
+              &::placeholder {
+                color: #fff;
+              }
+            }
+            &:active {
+              background-color: rgba(123, 94, 234, 0.7);
+              color: #fff;
+            }
+            &::placeholder {
+              text-transform: uppercase;
+              color: #9fa4a6;
+              font-size: 11px;
+            }
+          }
+          .OTP_input_field {
+            width: 93% !important;
+            overflow-y: hidden;
+            @include breakpoints(mdlgMobile) {
+              width: 90% !important;
+            }
+          }
+          input:-webkit-autofill {
+            background-color: rgba(123, 94, 234, 0.7) !important;
+          }
+        }
+        .captchaContainer {
+          display: flex;
+          align-items: center;
+          // justify-content: center;
+          p {
+            color: #000;
+            padding: 5px;
+            font-size: 18px;
+            min-width: 18px;
+          }
+          input {
+            padding-left: 10px;
+            width: 10%;
+            font-size: 18px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            border: 1px solid #ccc;
+            outline: none;
+            background-color: rgba(123, 94, 234, 0.08);
+            &:focus {
+              background-color: rgba(123, 94, 234, 0.7);
+              color: #fff;
+              &::placeholder {
+                color: #fff;
+              }
+            }
+            &:active {
+              background-color: rgba(123, 94, 234, 0.7);
+              color: #fff;
+            }
+          }
+          span {
+            // cursor: pointer;
+            // padding-left: 10px;
+            cursor: pointer;
+            svg {
+              margin: 4px 0 0px 5px;
+              padding: 5px;
+              font-size: 18px;
+              transform-origin: center center;
+              color: rgba(0, 0, 0, 0.2);
+              transition: transform 0.2s ease-in, color 0.2s ease-in;
+              &:hover {
+                color: rgba(0, 0, 0, 0.4);
+                transform: rotate(180deg);
+              }
+            }
+          }
+        }
+        .form_group_OTP {
+          // background: red;
+          width: 100%;
+          display: grid;
+          grid-template-columns: 7fr 3fr;
+          @include breakpoints(mdlgMobile) {
+            grid-template-columns: 3fr 2fr;
+          }
+          gap: 5px;
+          .OTP_resend_btn {
+            background-color: #7b5eea;
+            // padding: 8px 12px;
+            height: 36px;
+            align-self: flex-end;
+            white-space: nowrap;
+            border-radius: 3px;
+            border: none;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            @include breakpoints(mdlgMobile) {
+              font-size: 12px;
+            }
+            &:hover {
+              background-color: #7b5eeaa6;
+              box-shadow: 0 5px 5px 0 rgb(82 63 105 / 5%);
+            }
+          }
+        }
+        .submit_btn {
+          background-color: #7b5eea;
+          padding: 10px 12px;
+          width: 100%;
+          border-radius: 3px;
+          border: none;
+          font-size: 15px;
+          font-weight: 600;
+          text-transform: capitalize;
+          color: #fff;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+          margin-top: 10px !important;
+          &:hover {
+            background-color: #7b5eeaa6;
+            box-shadow: 0 5px 5px 0 rgb(82 63 105 / 5%);
+          }
+        }
+        .forget_password {
+          margin: 10px 0;
+          text-align: end;
+          a {
+            color: #7a5eeaf8;
+            font-size: 14px;
+            justify-content: center;
+            font-weight: 600;
+          }
+        }
+        .go_to_register {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 15px;
+          text-align: center;
+          p {
+            color: #000;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0px 5px;
+            a {
+              color: #7a5eeaf8 !important;
+            }
+            .log_page_nav_link {
+              &:hover {
+                border-bottom: 2px solid #7b5eea;
+                color: #7b5eea;
+              }
+            }
+          }
+          .login_nav_break_point {
+            color: #7a5eeaf8 !important;
+          }
+        }
+        .go_to_termscondition {
+          margin-top: 30px;
+          text-align: center;
+          p {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            a {
+              color: #7a5eeaf8 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

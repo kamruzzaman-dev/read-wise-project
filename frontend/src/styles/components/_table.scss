@@ -1,0 +1,44 @@
+@import "../abstract/variables";
+.materialTablePagination {
+  .MuiTablePagination-toolbar {
+    transition: all 0.3s ease-in-out;
+    color: $text-p-color !important;
+    .MuiTablePagination-selectLabel,
+    .MuiInputBase-colorPrimary {
+      display: none !important;
+    }
+    .MuiTablePagination-actions {
+      button {
+        transition: all 0.3s ease-in-out;
+        color: $text-p-color !important;
+      }
+      .Mui-disabled {
+        color: $text-disabled !important;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+}
+
+.materialTable {
+  transition: all 0.3s ease-in-out;
+  .materialTableHead {
+    .materialTableRow {
+      .materialTableCell {
+        background: $bg-body !important;
+        color: $text-p-color !important;
+        border-bottom: 1px solid rgb(224 224 224 / 38%) !important;
+        text-align: center !important;
+      }
+    }
+  }
+  .materialTableBody {
+    .materialTableBodyRow {
+      .materialTableBodyCell {
+        color: $text-p-color !important;
+        border-bottom: 1px solid rgb(224 224 224 / 38%) !important;
+        text-align: center !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@import "../../styles/responsive/breakpoints";
+@import "../../styles/abstract/variables";
+
+@keyframes load {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0);
+    background-color: var(--color);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.loading {
+  background-color: $bg-body;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  .container_loading {
+    width: 80px;
+    height: 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.3rem;
+    transform: rotate(-45deg);
+
+    .square {
+      background-color: rgb(193, 107, 107);
+      display: grid;
+      place-items: center; 
+      border-radius: 5px; 
+      animation: load 1.6s ease infinite;
+    }
+
+    .one {
+      --color: rgb(255, 0, 217);
+    }
+
+    .two {
+      animation-delay: 0.1s;
+      --color: rgb(43, 255, 0);
+    }
+
+    .three {
+      animation-delay: 0.2s;
+      --color: rgb(62, 62, 197);
+    }
+
+    .four {
+      animation-delay: 0.3s;
+      --color: rgb(216, 216, 85);
+    }
+
+    .five {
+      animation-delay: 0.4s;
+      --color: rgb(255, 134, 5);
+    }
+  }
+}

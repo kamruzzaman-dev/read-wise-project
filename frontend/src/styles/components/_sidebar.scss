@@ -1,0 +1,229 @@
+@import "../responsive/breakpoints";
+.life_care_project_sidebar {
+  .life_care_project_logo_container {
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background: $bg-white;
+    z-index: 9;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 15px;
+    border-bottom: $border-header;
+    padding: 10px 0 !important;
+    img {
+      width: 60px;
+      height: 60px;
+      @include breakpoints(laptop) {
+        width: 60px;
+        height: 60px;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+  .life_care_project_user_profile {
+    padding: 5px 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    @include breakpoints(laptop) {
+      padding: 0 9px;
+    }
+    .life_care_project_user_pic {
+      img {
+        width: 75px;
+        height: 75px;
+        margin: auto;
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+        @include breakpoints(laptop) {
+          width: 75px;
+          height: 75px;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+    .life_care_project_user_info {
+      font-family: $font-family;
+      color: $text-black;
+      transition: all 0.3s ease-in-out;
+      h2 {
+        font-size: 25px;
+        font-weight: 600;
+        color: $text-menu-active-color;
+        overflow: hidden;
+        text-transform: capitalize;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      p {
+        font-size: 15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  .life_care_project_sidebar_menu {
+    .life_care_project_sidebar_menu_lists {
+      list-style: none;
+      padding: 10px 10px 0 0 !important;
+      .life_care_project_sidebar_menu_list {
+        margin: auto !important;
+        margin-bottom: 10px !important;
+        @include breakpoints(laptop) {
+          margin: auto !important;
+          margin-bottom: 10px !important;
+          transition: all 0.3s ease-in-out;
+          .active {
+            color: $text-menu-active-color;
+          }
+        }
+        .life_care_project_nav_link {
+          padding: 6px 30px;
+          display: flex;
+          align-items: center;
+          // border-radius: 0 60px 60px 0 !important;
+          white-space: nowrap;
+          overflow: hidden;
+          transition: all 0.3s ease-in-out;
+          margin: 2px 0;
+          &:hover {
+            color: $text-menu-active-color;
+            .icon_text {
+              span {
+                svg {
+                  color: $text-menu-active-color;
+                }
+              }
+              p {
+                color: $text-menu-active-color;
+              }
+            }
+          }
+          .icon_text {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            transition: all 0.3s ease-in-out;
+            span {
+              margin-right: 0px;
+              margin-left: -3px;
+              svg {
+                font-size: 20px;
+                color: $text-sidebar-color;
+                padding: 12px;
+                border-radius: 50px;
+                transition: all 0.3s ease-in-out;
+                display: block !important;
+                opacity: 1 !important;
+                margin-top: -7px;
+              }
+            }
+            p {
+              font-size: 14px;
+              text-transform: capitalize;
+              font-weight: 600;
+              color: $text-p-color;
+              transition: all 0.3s ease-in-out;
+              display: block;
+              opacity: 1;
+              @include breakpoints(laptop) {
+                display: none;
+                opacity: 0;
+              }
+            }
+          }
+          span {
+            svg {
+              font-size: 20px;
+              margin-bottom: -6px;
+              color: $text-gray;
+              display: block;
+              opacity: 1;
+              font-weight: 600 !important;
+              @include breakpoints(laptop) {
+                display: none !important;
+                opacity: 0 !important;
+              }
+            }
+          }
+        }
+        .active {
+          color: $text-menu-active-color;
+          // border-right: 2px solid $text-menu-active-color;
+          .icon_text {
+            svg,
+            p {
+              color: $text-menu-active-color !important;
+            }
+          }
+        }
+      }
+      .submenu {
+        ul {
+          list-style: none;
+          margin-left: 20px !important;
+          transition: all 0.3s ease-in-out;
+          @include breakpoints(laptop) {
+            display: none;
+            opacity: 0;
+          }
+          li {
+            a.dropdown {
+              position: relative;
+              font-size: 13px;
+              padding-left: 70px;
+              padding-top: 10px;
+              padding-bottom: 8px;
+              font-family: $font-family;
+              font-weight: 600;
+              color: $text-p-color;
+              text-transform: capitalize;
+              &::before {
+                position: absolute;
+                content: "";
+                height: 2px;
+                width: 2px;
+                border: 2px solid $text-p-color;
+                border-radius: 50px;
+                top: 44%;
+                left: 52px;
+                transition: all 0.5s;
+              }
+              &:hover {
+                background-color: transparent;
+                &::before {
+                  border: 2px solid $text-menu-active-color;
+                }
+              }
+            }
+            // sidebar menu active css
+            .active {
+              color: $text-menu-active-color !important;
+              background: transparent !important;
+              box-shadow: none !important;
+              &::before {
+                border: 2px solid $text-menu-active-color !important;
+              }
+            }
+          }
+        }
+      }
+      // sidebar dropdown menu ative css
+      .active {
+        height: auto !important;
+        animation: menuToggle 0.3s alternate;
+      }
+    }
+  }
+}
+
+@keyframes menuToggle {
+  from {
+    height: 66px;
+    transition: all 0.3s ease-in-out;
+  }
+  to {
+    height: auto;
+    transition: all 0.3s ease-in-out;
+  }
+}

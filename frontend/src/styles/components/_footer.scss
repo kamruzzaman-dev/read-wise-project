@@ -1,0 +1,12 @@
+footer {
+  margin-top: 30px;
+  p {
+    color: $text-p-color !important;
+    transition: all 0.3s ease-in-out;
+    font-size: 15px !important;
+    a {
+      color: $text-menu-active-color !important;
+      font-weight: 600;
+    }
+  }
+}
