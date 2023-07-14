@@ -1,0 +1,28 @@
+body {
+  font-family: $font-family;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  background: $gray-white-bg-color;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.container {
+  padding: 0 30px;
+  max-width: 1340px;
+  margin: auto;
+}
+// button disabled css
+:disabled {
+  background-color: rgb(140 140 140 / 31%) !important;
+  color: $text-default-color;
+}
+// iframe hide css
+iframe {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0;
+}

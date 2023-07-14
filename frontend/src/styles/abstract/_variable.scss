@@ -1,0 +1,16 @@
+// light mode variable
+:root {
+  --gray-white-bg-color: #eef2fe;
+  --text-default-color: #000000;
+}
+
+// dark mode variable
+.dark {
+  --gray-white-bg-color: #22223d;
+  --text-default-color: #dedefd;
+}
+
+$gray-white-bg-color: var(--gray-white-bg-color);
+$text-default-color: var(--text-default-color);
+$font-family: "Roboto", sans-serif;
+$font-family: "Varela Round", sans-serif;
