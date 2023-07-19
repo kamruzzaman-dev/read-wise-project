@@ -34,7 +34,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex w-full mt-20 gap-5">
-        <p> &#169; HogwartsBookshelf {year}</p>
+        <p> &#169; Read wise {year}</p>
         <p className="ml-right">Privacy Policy</p>
         <p className="ml-right">Terms & Condition</p>
       </div>

@@ -63,7 +63,6 @@ const Book = ({ data }: { data: IBook[] }) => {
 
   return (
     <section className="text-gray-600 body-font">
-      <h1 className='text-6xl font-black text-primary mb-12'>Best Books</h1>
       <div className="pb-24 mx-auto">
         <div className="flex flex-wrap -m-4">
           {data?.map((book: IBook, i: number) => (

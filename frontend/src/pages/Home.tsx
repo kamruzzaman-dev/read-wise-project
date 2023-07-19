@@ -31,6 +31,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <h1 className='text-6xl font-black text-primary mb-12'>Best Books</h1>
           <Book data={data?.data ?? []} />
         </div>
       )}
