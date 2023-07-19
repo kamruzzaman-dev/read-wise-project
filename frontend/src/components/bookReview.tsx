@@ -48,7 +48,7 @@ export default function BookReview(book: any) {
       Notification(data?.message, "success")
     }
     if (isError === true && error) {
-      if ('data' in error) {
+      if (user && 'data' in error) {
         Notification((error as any).data!.message, "error")
       }
     }

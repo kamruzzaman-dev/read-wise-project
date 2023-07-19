@@ -17,18 +17,9 @@ const routes = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: '/books',
-        element: <Books />,
-      },
-      {
-        path: '/book-details/:id',
-        element: <BookDetails />,
-      },
+      { index: true, element: <Home /> },
+      { path: '/books', element: <Books /> },
+      { path: '/book-details/:id', element: <BookDetails /> },
       {
         path: '/add-new-book',
         element: (
@@ -63,18 +54,9 @@ const routes = createBrowserRouter([
       },
     ],
   },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/signup',
-    element: <Signup />,
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  },
+  { path: '/login', element: <Login /> },
+  { path: '/signup', element: <Signup /> },
+  { path: '*', element: <NotFound /> },
 ]);
 
 export default routes;
