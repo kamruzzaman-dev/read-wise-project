@@ -1,16 +1,15 @@
 'use client';
 import * as React from 'react';
-
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { saveToLocalStorage } from '../utils/localstorage.ts';
 import { useSignUpMutation } from '../redux/features/user/userApi.ts';
+import { Label } from './ui/label.tsx';
+import { Input } from './ui/input.tsx';
+import { Button } from './ui/button.tsx';
+import { cn } from '../lib/utils.ts';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
