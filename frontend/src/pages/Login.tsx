@@ -1,143 +1,70 @@
-import { useEffect, useState } from "react";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import logo from '../assets/images/logo.png';
+import { LoginForm } from '@/components/LoginForm';
 
-import AuthCardLayout from "./AuthCardLayout";
-import { getLocalStorage, savedLocalStorage } from "../utils/localStorage";
-import { useAddLoginMutation } from "../redux/service/userApi/userApi";
-import { Notification } from "../components/UI/ToastNotification";
-import Input from "../components/UI/Input";
-import Header from "../components/Shared/Header/Header";
-import Footer from "../components/Shared/Footer/Footer";
-import Button from "../components/UI/Button";
-import CustomLink from "../components/UI/Link";
-export let popupShow = false;
-const Login = () => {
-    const [errors, setErrors] = useState({}); // error catch
-    const navigate = useNavigate();
-    const [value, setValue] = useState({
-        email: "",
-        password: "",
-    });
-
-    const handleChange = (e) => {
-        setValue({ ...value, [e.target.name]: e.target.value });
-    };
-
-    // auth check
-    useEffect(() => {
-        if (getLocalStorage("testingToken")) {
-            navigate("/dashboard");
-        }
-    }, [navigate]);
-
-    // error
-    // useEffect(() => {
-    //     setErrors(loginValidate(value));
-    // }, [value]);
-
-    // add user
-    const [addLogin, { error, data, isLoading }] = useAddLoginMutation();
-    console.log(data);
-    useEffect(() => {
-        if (data?.message) {
-            Notification(data?.message, "success");
-            navigate("/dashboard");
-            savedLocalStorage("testingToken", data?.token);
-        } else {
-            Notification(error?.data?.message, "error");
-        }
-    }, [error, data, navigate]);
-
-    if (JSON.parse(getLocalStorage("otp_timer"))) {
-        setTimeout(() => { },
-            parseInt(JSON.parse(getLocalStorage("otp_timer"))) * 1000);
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (Object.keys(errors).length > 0) {
-            Notification(errors?.email || errors?.password, "error");
-        } else {
-            const logData = {
-                ...value,
-                email: value.email.toLowerCase(),
-            };
-            console.log(logData);
-            await addLogin(logData);
-        }
-    };
-
-    const [showPassword, setShowPassword] = useState(false);
-    const token = getLocalStorage("testingToken");
-    useEffect(() => {
-        if (token) {
-            navigate("/");
-        }
-    }, [token, navigate]);
-
-    return (
-        <>
-            <Header />
-            <div className="rf_dashboard_login_page_wrapper">
-                <AuthCardLayout
-                    style={{ backgroundColor: "rgb(0 0 0 / 17%)" }}
-                    className="rf_dashboard_login_card rf_all_card"
-                >
-                    <div className="rf_section_title">
-                        <h2>Login</h2>
-                    </div>
-                    <div className="hr_border"></div>
-                    <div className="rf_dashboard_login_content">
-                        <form onSubmit={handleSubmit}>
-                            <div className="form_group" style={{ display: "inherit" }}>
-                                <Input
-                                    label="Email"
-                                    type="text"
-                                    name="email"
-                                    placeholder="Enter your Email Address"
-                                    onChange={handleChange}
-                                    value={value.email}
-                                    className="userid_input input_field"
-                                    inputGroupClass="right"
-                                />
-                            </div>
-                            <div className="form_group" style={{ display: "inherit" }}>
-                                <Input
-                                    label="Password"
-                                    type={`${showPassword ? "text" : "password"}`}
-                                    name="password"
-                                    placeholder="Enter your password"
-                                    onChange={handleChange}
-                                    value={value.password}
-                                    className="password_input input_field"
-                                    inputGroupClass="right"
-                                />
-                                <span
-                                    style={{ marginTop: "0px" }}
-                                    onClick={() => setShowPassword(!showPassword)}
-                                >
-                                    {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
-                                </span>
-                            </div>
-                            <Button type="submit" className="submit_btn">
-                                {isLoading ? "Loading..." : "Login"}
-                            </Button>
-                            <div className="go_to_register">
-                                <p>
-                                    already haven't any account?&nbsp;
-                                    <CustomLink href="/register" className="log_page_nav_link">
-                                        Register
-                                    </CustomLink>{" "}
-                                </p>
-                            </div>
-                        </form>
-                    </div>
-                </AuthCardLayout>
+export default function Login() {
+  return (
+    <>
+      <div className="container relative hidden h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+        <Link
+          to="/signup"
+          className={cn(
+            buttonVariants({ variant: 'ghost', size: 'sm' }),
+            'absolute right-4 top-4 md:right-8 md:top-8 border-b-[3px] border-[#0B666A]'
+          )}
+        >
+          Signup
+        </Link>
+        <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
+          <div
+            className="absolute inset-0 bg-cover bg-no-repeat"
+            style={{
+              backgroundImage:
+                'url(https://source.unsplash.com/_-hjiem5TqI)',
+            }}
+          />
+          <div className="relative z-20 flex items-center text-lg font-medium">
+            <Link to="/">
+              <img className="h-20" src={logo} alt="" />
+            </Link>
+          </div>
+          <div className="relative z-20 mt-auto">
+            <blockquote className="space-y-2"></blockquote>
+          </div>
+        </div>
+        <div className="lg:p-8">
+          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+            <div className="flex flex-col space-y-2 text-center">
+              <h1 className="text-2xl font-semibold tracking-tight">
+                Login to your account
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Enter your email below
+              </p>
             </div>
-            <Footer />
-        </>
-    );
-};
-
-export default Login;
+            <LoginForm />
+            <p className="px-8 text-center text-sm text-muted-foreground">
+              By clicking continue, you agree to our{' '}
+              <Link
+                to="/terms"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Terms of Service
+              </Link>{' '}
+              and{' '}
+              <Link
+                to="/privacy"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Privacy Policy
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

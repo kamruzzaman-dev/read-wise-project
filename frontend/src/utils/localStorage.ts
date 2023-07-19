@@ -1,11 +1,11 @@
-export const savedLocalStorage = (key: string, value: string): void => {
-  localStorage.setItem(key, value);
+export const saveToLocalStorage = (key: string, value: string) => {
+  return localStorage.setItem(key, value);
 };
 
-export const getLocalStorage = (key: string): string | null => {
+export const getFromLocalStorage = (key: string) => {
   return localStorage.getItem(key);
 };
 
-export const removeLocalStorage = (key: string): void => {
-  localStorage.removeItem(key);
+export const removeFromLocalStorage = (key: string) => {
+  return localStorage.removeItem(key);
 };
