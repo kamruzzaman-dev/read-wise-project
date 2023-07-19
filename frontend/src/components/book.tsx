@@ -31,7 +31,6 @@ const Book = ({ data }: { data: IBook[] }) => {
 
 
   useEffect(() => {
-    console.log(finishedData)
     if (isSuccess && !isLoading) {
       Notification(finishedData?.message, "success")
     }
