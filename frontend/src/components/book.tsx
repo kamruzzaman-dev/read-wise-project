@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom';
-import {
-  IoCheckmarkDoneCircleOutline,
-  IoCheckmarkDoneCircleSharp,
-} from 'react-icons/io5';
+import { IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
+import { AiOutlineFileDone } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import { IBook } from '../types/globalTypes';
 import { getFromLocalStorage } from '../utils/localstorage';
 import { useFinishedReadingMutation } from '../redux/features/readSoon/readSoonApi';
+import { Notification } from './ui/notification';
 
 const Book = ({ data }: { data: IBook[] }) => {
   const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
@@ -18,7 +16,6 @@ const Book = ({ data }: { data: IBook[] }) => {
   ] = useFinishedReadingMutation();
 
   useEffect(() => {
-    console.log(selectedBook);
     if (selectedBook && user) {
       const object = {
         bookId: selectedBook?._id,
@@ -27,39 +24,20 @@ const Book = ({ data }: { data: IBook[] }) => {
           userId: user?._id,
         },
       };
-      console.log(object, 'object');
       finishedReading(object);
     }
   }, [selectedBook]);
 
   useEffect(() => {
     if (isSuccess && !isLoading) {
-      toast.success('Finished reading status updated successfully', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification('Finished reading status updated successfully', "success")
     }
     if (isError === true && error) {
-      toast.error(`Something went wrong! Please try again.`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification(`Something went wrong! Please try again.`, "error")
     }
   }, [isLoading, error, isError, isSuccess]);
 
-  console.log(isError, isLoading, finishedData, error);
+  // console.log(isError, isLoading, finishedData, error);
 
   return (
     <section className="text-gray-600 body-font">
@@ -69,7 +47,7 @@ const Book = ({ data }: { data: IBook[] }) => {
             <div key={i} className="lg:w-1/4 md:w-1/2 p-4 w-full relative">
               <Link
                 to={`/book-details/${book?._id}`}
-                className="block  cursor-pointer h-48 rounded overflow-hidden"
+                className="block cursor-pointer h-48 rounded overflow-hidden"
               >
                 <img
                   alt="ecommerce"
@@ -108,7 +86,7 @@ const Book = ({ data }: { data: IBook[] }) => {
                           setSelectedBook(book);
                         }}
                       >
-                        <IoCheckmarkDoneCircleSharp className="text-3xl text-green-500" />
+                        <AiOutlineFileDone className="text-3xl text-green-500" />
                       </button>
                     )
                   )}

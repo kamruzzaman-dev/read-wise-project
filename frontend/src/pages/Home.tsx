@@ -1,3 +1,4 @@
+import PulseLoading from "../components/PulseLoading";
 import Book from "../components/book";
 import { useGetBooksQuery } from "../redux/features/book/bookApi";
 
@@ -8,7 +9,7 @@ export default function Home() {
       {isLoading ? (
         <div className="flex justify-center items-center mt-16 mb-5 h-96">
           {' '}
-          <h2> Loading...</h2>
+          <PulseLoading />
         </div>
       ) : (
         <div className="container">
@@ -22,7 +23,7 @@ export default function Home() {
                 <br />
                 Read Wise
               </h1>
-              <p className="text-secondary font-semibold text-xl">
+              <p className="text-primary font-semibold text-xl">
                 Dive into our vast collection of books across all genres, from timeless classics to the latest bestsellers.
               </p>
               <div className="text-primary font-semibold mt-10">
@@ -31,7 +32,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <h1 className='text-6xl font-black text-primary mb-12'>Best Books</h1>
+          {data?.data ? <h1 className='text-6xl font-black text-primary mb-12 underline'>Best Books</h1> : ''}
           <Book data={data?.data ?? []} />
         </div>
       )}

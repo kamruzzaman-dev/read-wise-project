@@ -13,13 +13,13 @@ import {
   AlertDialogTrigger,
 } from '../components/ui/altert-dialog';
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import { getFromLocalStorage } from '../utils/localstorage';
 import { useDeleteBookMutation, useSingleBookQuery } from '../redux/features/book/bookApi';
 import { useAddToReadSoonMutation, useGetReadSoonListQuery } from '../redux/features/readSoon/readSoonApi';
 import { IBook } from '../types/globalTypes';
 import BookReview from '../components/bookReview';
 import { useAddToWishlistMutation, useGetWishlistQuery } from '../redux/features/wishlist/wishlistApi';
+import { Notification } from '../components/ui/notification';
 
 
 export default function BookDetails() {
@@ -41,7 +41,7 @@ export default function BookDetails() {
   const [
     addToReadSoon,
     {
-      data: readSoonData,
+      // data: readSoonData,
       isSuccess: readSoonSuccess,
       isLoading: isReadSoonLoading,
       isError: isReadSoonError,
@@ -65,80 +65,26 @@ export default function BookDetails() {
   useEffect(() => {
     if (isSuccess && !isLoading) {
       navigate('/');
-      toast.success('You have logged in successfully.', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification('You have logged in successfully', "success")
     }
     if (isError === true && error) {
-      toast.error(`Something went wrong! Please try again.`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification('Something went wrong! Please try again.', "error")
     }
 
     if (wishlistSuccess && !isWishlistLoading) {
-      toast.success('Added to wishlist', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification('Added to wishlist', "success")
     }
 
     if (isWishlistError === true && wishlistError) {
-      toast.error(`Something went wrong! Please try again.`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification('Something went wrong! Please try again.', "error")
     }
 
     if (readSoonSuccess && !isReadSoonLoading) {
-      toast.success('Added to read soon list', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification('Added to read soon list.', "success")
     }
 
     if (isReadSoonError === true && readSoonError) {
-      toast.error(`Something went wrong! Please try again.`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification('Something went wrong! Please try again.', "error")
     }
   }, [
     isLoading,
@@ -167,16 +113,7 @@ export default function BookDetails() {
       return;
     }
     if (alreadyAddedToWishlist) {
-      toast.error(`Already added to wishlist`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification('Already added to wishlist.', "error")
       return;
     }
 
@@ -198,22 +135,14 @@ export default function BookDetails() {
       return;
     }
     if (alreadyAddedToReadSoonList) {
-      toast.error(`Already added to wishlist`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification('Already added to wishlist.', "error")
       return;
     }
 
     const object = {
       userId: user?._id,
       email: user?.email,
+      id: book?.data?._id,
       bookId: book?.data,
     };
 
@@ -224,16 +153,16 @@ export default function BookDetails() {
     <>
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
-          <div className="lg:w-4/5 mx-auto flex flex-wrap">
+          <div className="lg:w-4/5 mx-auto relative flex flex-wrap">
             <img
               alt="ecommerce"
               className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
               src={book?.data?.image}
             />
+            <h2 className="text-gray-500 absolute p-1 backdrop-blur-xl text-stone-50 bg-red-500 top-0 left-0 text-xs tracking-widest title-font mb-">
+              @{book?.data?.genre}
+            </h2>
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 relative">
-              <h2 className="text-sm title-font text-gray-500 tracking-widest">
-                @{book?.data?.genre}
-              </h2>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                 {book?.data?.title}
               </h1>
@@ -380,13 +309,14 @@ export default function BookDetails() {
 
                 <button
                   onClick={handleAddToReadSoon}
-                  className="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded"
+                  className="flex ml-auto text-white bg-green-700 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded"
+                  disabled={isReadSoonLoading ? true : false}
                 >
-                  Read Soon
+                  {isReadSoonLoading ? "Loading.." : "Read Soon"}
                 </button>
                 <button
                   onClick={handleAddToWishlist}
-                  className={`rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 ${alreadyAddedToWishlist && 'bg-pink-500 text-white'
+                  className={`rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 ${alreadyAddedToWishlist && 'bg-red-500 text-white'
                     }`}
                 >
                   <svg

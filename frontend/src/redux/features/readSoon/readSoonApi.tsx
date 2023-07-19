@@ -1,4 +1,4 @@
-import api from '@/redux/api/apiSlice';
+import api from "../../api/apiSlice";
 
 const readSoonApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -30,6 +30,6 @@ const readSoonApi = api.injectEndpoints({
 
 export const {
   useAddToReadSoonMutation,
-  useGetReadSoonListQuery,
   useFinishedReadingMutation,
+  useGetReadSoonListQuery,
 } = readSoonApi;

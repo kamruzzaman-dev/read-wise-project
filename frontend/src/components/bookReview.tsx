@@ -4,10 +4,10 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 import { FiSend } from 'react-icons/fi';
-import { toast } from 'react-toastify';
 import { Input } from './ui/input';
 import { getFromLocalStorage } from '../utils/localstorage';
 import { useAddReviewMutation } from '../redux/features/book/bookApi';
+import { Notification } from './ui/notification';
 
 export default function BookReview(book: any) {
   const [inputValue, setInputValue] = useState<string>('');
@@ -19,16 +19,7 @@ export default function BookReview(book: any) {
     event.preventDefault();
 
     if (!user) {
-      return toast.error(`Please login in to add review`, {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification('Please login in to add review.', "error")
     }
 
     if (inputValue?.length === 0) {
@@ -54,29 +45,11 @@ export default function BookReview(book: any) {
 
   useEffect(() => {
     if (isSuccess && !isLoading) {
-      toast.success(`${data?.message}`, {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification(data?.message, "success")
     }
     if (isError === true && error) {
       if ('data' in error) {
-        toast.error(`${(error as any).data!.message}`, {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
+        Notification((error as any).data!.message, "error")
       }
     }
   }, [isLoading, isSuccess, error, isError, data]);
@@ -85,14 +58,14 @@ export default function BookReview(book: any) {
     <div className="max-w-7xl mx-auto mt-5">
       <form className="flex gap-5 items-center" onSubmit={handleSubmit}>
         <Input
-          className="border-2"
+          className="border-2 border-[#0B666A] h-24"
           onChange={handleChange}
           value={inputValue}
           placeholder="write your review here"
         />
         <Button
           type="submit"
-          className="rounded-full h-10 w-10 p-2 text-[25px] bg-yellow-500 hover:bg-yellow-600"
+          className="rounded-full h-10 w-10 p-3 text-[25px] bg-blue-500 hover:bg-indigo-600"
         >
           <FiSend />
         </Button>
@@ -103,9 +76,9 @@ export default function BookReview(book: any) {
             review: { userName: string; review: string; userEmail: string },
             index: number
           ) => (
-            <div key={index} className="flex gap-3 items-center mb-5">
+            <div key={index} className="flex gap-3 items-center mb-5 pb-3 border-b-2 border-[#0B666A]">
               <Avatar>
-                <AvatarImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhfa0N3U7b1v1HpYOzP9IlmjSTaSjJYOrk3A&usqp=CAU" />
+                <AvatarImage src="https://res.cloudinary.com/dpjht4etk/image/upload/v1689801515/avatar-7_mavjxk.jpg" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
               <p>{review?.review}</p>

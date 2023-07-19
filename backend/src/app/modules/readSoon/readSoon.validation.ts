@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-const wishlistZodSchema = z.object({
+const ReadSoonListZodSchema = z.object({
   body: z.object({
     userId: z.string({
       required_error: 'user id is required',
@@ -17,16 +17,16 @@ const wishlistZodSchema = z.object({
       image: z.string(),
     }),
   }),
-});
+})
 
 const finishedReadingZodSchema = z.object({
   body: z.object({
     userId: z.string().optional(),
     finished: z.boolean().optional(),
   }),
-});
+})
 
-export const wishlistValidation = {
-  wishlistZodSchema,
+export const readSoonListValidation = {
+  ReadSoonListZodSchema,
   finishedReadingZodSchema,
-};
+}
