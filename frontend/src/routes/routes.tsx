@@ -9,6 +9,7 @@ import PrivateRoute from './privateRoute';
 import AddNewBook from '../pages/AddNewBook';
 import BookDetails from '../pages/BookDetails';
 import EditBook from '../pages/EditBook';
+import ReadSoon from '../pages/ReadSoon';
 
 const routes = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <EditBook />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/read-soon',
+        element: (
+          <PrivateRoute>
+            <ReadSoon />
           </PrivateRoute>
         ),
       },
