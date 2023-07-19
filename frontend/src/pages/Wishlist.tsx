@@ -4,7 +4,7 @@ import { getFromLocalStorage } from "../utils/localstorage";
 
 
 const Wishlist = () => {
-  const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
+  const user = JSON.parse(getFromLocalStorage('user_Information')!);
   const { data: wishlist } = useGetWishlistQuery(user?._id);
   return (
     <div className="container mt-16">

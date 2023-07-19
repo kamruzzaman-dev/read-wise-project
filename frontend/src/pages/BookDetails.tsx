@@ -23,7 +23,7 @@ import { Notification } from '../components/ui/notification';
 
 
 export default function BookDetails() {
-  const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
+  const user = JSON.parse(getFromLocalStorage('user_Information')!);
   const [confirmDelete, setConfirmDelete] = useState(false);
   // API
   const [deleteBook, { data, isSuccess, isLoading, isError, error }] =

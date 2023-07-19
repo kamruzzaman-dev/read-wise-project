@@ -57,7 +57,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
         theme: 'light',
       });
       saveToLocalStorage('access-token', data?.data?.accessToken);
-      saveToLocalStorage('user_Infomation', JSON.stringify(data?.data?.userData));
+      saveToLocalStorage('user_Information', JSON.stringify(data?.data?.userData));
     }
     if (isError === true && error) {
       if ('data' in error) {

@@ -3,7 +3,7 @@ import { useGetReadSoonListQuery } from "../redux/features/readSoon/readSoonApi"
 import { getFromLocalStorage } from "../utils/localstorage";
 
 const ReadSoon = () => {
-  const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
+  const user = JSON.parse(getFromLocalStorage('user_Information')!);
   const { data: readSoonList } = useGetReadSoonListQuery(user?._id);
 
   return (

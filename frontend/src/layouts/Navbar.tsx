@@ -14,9 +14,9 @@ import { getFromLocalStorage, removeFromLocalStorage } from '../utils/localstora
 
 
 export default function Navbar() {
-  const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
+  const user = JSON.parse(getFromLocalStorage('user_Information')!);
   const handleLogOut = () => {
-    removeFromLocalStorage('user_Infomation');
+    removeFromLocalStorage('user_Information');
     removeFromLocalStorage('access-token');
     window.location.reload();
   };

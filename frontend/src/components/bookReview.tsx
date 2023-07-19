@@ -13,7 +13,7 @@ export default function BookReview(book: any) {
   const [inputValue, setInputValue] = useState<string>('');
   const [addReview, { data, isError, error, isLoading, isSuccess }] =
     useAddReviewMutation();
-  const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
+  const user = JSON.parse(getFromLocalStorage('user_Information')!);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

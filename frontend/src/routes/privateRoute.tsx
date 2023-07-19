@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const PrivateRoute = ({ children }: IProps) => {
-  const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
+  const user = JSON.parse(getFromLocalStorage('user_Information')!);
 
   const { pathname } = useLocation();
 

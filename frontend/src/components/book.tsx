@@ -8,7 +8,7 @@ import { useFinishedReadingMutation } from '../redux/features/readSoon/readSoonA
 import { Notification } from './ui/notification';
 
 const Book = ({ data }: { data: IBook[] }) => {
-  const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
+  const user = JSON.parse(getFromLocalStorage('user_Information')!);
   const [selectedBook, setSelectedBook] = useState<IBook | null>(null);
   const [
     finishedReading,
