@@ -1,16 +1,53 @@
-import mongoose from 'mongoose'
-import app from './app'
-import config from './config/index'
-async function main() {
+import mongoose from 'mongoose';
+import configs from './config';
+import app from './app';
+import { Server } from 'http';
+
+// Handling uncaught exceptions
+process.on('uncaughtException', error => {
+  console.log(error);
+  process.exit(1);
+});
+
+let server: Server;
+
+async function bootstrap() {
   try {
-    await mongoose.connect(config.dataBase_url as string)
-    console.log('database connection established')
-    app.listen(config.port, () => {
-      console.log(`project listening on port ${config.port as string}`)
-    })
+    await mongoose.connect(configs.db_url as string);
+    console.log('Database connection established 😇');
+
+    server = app.listen(configs.port, () => {
+      console.log(
+        `Server is running on port ${configs.port}`
+      );
+    });
   } catch (error) {
-    console.log('database connection failed', error)
+    console.log('Failed to connect to database', error);
   }
+  // Gracefully shutting down the server in case of unhandled rejection
+  process.on('unhandledRejection', error => {
+    console.log(error);
+
+    if (server) {
+      // Close the server and log the error
+      server.close(() => {
+        console.log(error);
+        process.exit(1);
+      });
+    } else {
+      // If server is not available, exit the process
+      process.exit(1);
+    }
+  });
 }
 
-main()
+bootstrap();
+
+// Handling SIGTERM signal
+process.on('SIGTERM', () => {
+  console.log('SIGTERM is received.');
+  if (server) {
+    // Close the server gracefully
+    server.close();
+  }
+});

@@ -1,23 +1,23 @@
-import mongoose from 'mongoose'
-import { IGenericErrorMessage, IGenericErrorResponse } from '../interface/error'
+import mongoose from 'mongoose';
+import { IGenericErrorMessage } from '../interfaces/error';
+import { IGenericErrorResponse } from '../interfaces/common';
 
-const handleValidationError = (
-  error: mongoose.Error.ValidationError
+// This function handles validation errors in Mongoose and returns a formatted error response
+export const handleValidationError = (
+  err: mongoose.Error.ValidationError
 ): IGenericErrorResponse => {
-  const errors: IGenericErrorMessage[] = Object.values(error.errors).map(
-    (el: mongoose.Error.ValidatorError | mongoose.Error.CastError) => {
+  const errors: IGenericErrorMessage[] = Object.values(err.errors).map(
+    (error: mongoose.Error.ValidatorError | mongoose.Error.CastError) => {
       return {
-        path: el?.path,
-        message: el?.message,
-      }
+        path: error?.path,
+        message: error?.message,
+      };
     }
-  )
-  const statusCode = 400
+  );
+  const statusCode = 400;
   return {
     statusCode,
-    message: 'Validation Error',
-    errorMessages: errors,
-  }
-}
-
-export default handleValidationError
+    message: 'Validation error',
+    errorMessage: errors,
+  };
+};

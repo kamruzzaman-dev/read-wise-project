@@ -1,13 +1,22 @@
-export type ILoginUser = {
-  phoneNumber: string
-  password: string
-}
+import { IUser } from '../user/user.interface';
 
-export type ILoginUserResponse = {
-  accessToken: string
-  refreshToken?: string
-}
+export type IUserLogin = {
+  email: string;
+  password: string;
+};
+
+export type IUserSignupResponse = {
+  result: IUser;
+  accessToken?: string;
+  refreshToken?: string;
+};
+
+export type IUserLoginResponse = {
+  userData: IUser | null;
+  accessToken: string;
+  refreshToken?: string;
+};
 
 export type IRefreshTokenResponse = {
-  accessToken: string
-}
+  accessToken: string;
+};
