@@ -1,6 +1,8 @@
+import Book from "../components/book";
+import { useGetBooksQuery } from "../redux/features/book/bookApi";
 
 export default function Home() {
-  const isLoading = 0
+  const { data, isLoading } = useGetBooksQuery(undefined);
   return (
     <>
       {isLoading ? (
@@ -11,7 +13,7 @@ export default function Home() {
       ) : (
         <div className="container">
           <div className="flex justify-between items-center h-[calc(100vh-80px)] max-w-7xl mx-auto ">
-            <div className="relative w-[40%] flex-1 bg-[#0B666A] border-[3px] border-[#0B666A]">
+            <div className="relative w-[40%] flex-1 bg-[#fff] border-[3px] border-[#0B666A]">
               <img className="w-full  " src="https://source.unsplash.com/CEMh4JRiSOI" alt="" />
             </div>
             <div className='flex-1 pl-10'>
@@ -29,6 +31,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <Book data={data?.data ?? []} />
         </div>
       )}
     </>
