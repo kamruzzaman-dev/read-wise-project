@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { useAddBookMutation } from '../redux/features/book/bookApi';
 import { getFromLocalStorage } from '../utils/localstorage';
+import { Notification } from '../components/ui/notification';
 
 const AddNewBook = () => {
   // API call
@@ -13,7 +13,7 @@ const AddNewBook = () => {
   const navigate = useNavigate();
 
   // user info
-  const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
+  const user = JSON.parse(getFromLocalStorage('user-info')!);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -67,28 +67,10 @@ const AddNewBook = () => {
   useEffect(() => {
     if (isSuccess && !isLoading) {
       navigate('/');
-      toast.success(`${data?.message}`, {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification(data?.message, "success")
     }
     if (isError === true && error) {
-      toast.error(`Something went wrong! Please try again.`, {
-        position: 'top-right',
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification("Something went wrong! Please try again.", "error")
     }
   }, [isLoading, isSuccess, error, isError, data, navigate]);
 
@@ -96,7 +78,7 @@ const AddNewBook = () => {
     <section className="text-gray-600 body-font relative">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-12">
-          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
+          <h1 className="sm:text-4xl text-2xl font-medium underline title-font mb-4 text-primary">
             Add A New Book
           </h1>
         </div>
@@ -109,7 +91,7 @@ const AddNewBook = () => {
               <div className="relative">
                 <label
                   htmlFor="title"
-                  className="leading-7 text-sm text-gray-600"
+                  className="leading-7 text-sm text-black"
                 >
                   Title
                 </label>
@@ -117,7 +99,7 @@ const AddNewBook = () => {
                   type="text"
                   id="title"
                   name="title"
-                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#0B666A] focus:bg-white focus:ring-2 focus:ring-teal-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
             </div>
@@ -125,7 +107,7 @@ const AddNewBook = () => {
               <div className="relative">
                 <label
                   htmlFor="author"
-                  className="leading-7 text-sm text-gray-600"
+                  className="leading-7 text-sm text-black"
                 >
                   Author
                 </label>
@@ -133,7 +115,7 @@ const AddNewBook = () => {
                   type="text"
                   id="author"
                   name="author"
-                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#0B666A] focus:bg-white focus:ring-2 focus:ring-teal-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   data-temp-mail-org={0}
                 />
               </div>
@@ -142,7 +124,7 @@ const AddNewBook = () => {
               <div className="relative">
                 <label
                   htmlFor="genre"
-                  className="leading-7 text-sm text-gray-600"
+                  className="leading-7 text-sm text-black"
                 >
                   Genera
                 </label>
@@ -150,7 +132,7 @@ const AddNewBook = () => {
                   type="text"
                   id="genre"
                   name="genre"
-                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#0B666A] focus:bg-white focus:ring-2 focus:ring-teal-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   data-temp-mail-org={0}
                 />
               </div>
@@ -159,7 +141,7 @@ const AddNewBook = () => {
               <div className="relative">
                 <label
                   htmlFor="publication_date"
-                  className="leading-7 text-sm text-gray-600"
+                  className="leading-7 text-sm text-black"
                 >
                   Publication date
                 </label>
@@ -167,7 +149,7 @@ const AddNewBook = () => {
                   type="date"
                   id="publication_date"
                   name="publication_date"
-                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#0B666A] focus:bg-white focus:ring-2 focus:ring-teal-500	 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   data-temp-mail-org={0}
                 />
               </div>
@@ -176,7 +158,7 @@ const AddNewBook = () => {
               <div className="relative">
                 <label
                   htmlFor="image"
-                  className="leading-7 text-sm text-gray-600"
+                  className="leading-7 text-sm text-black"
                 >
                   Image
                 </label>
@@ -184,7 +166,7 @@ const AddNewBook = () => {
                   type="file"
                   id="image"
                   name="image"
-                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-[#0B666A] focus:bg-white focus:ring-2 focus:ring-teal-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   data-temp-mail-org={0}
                 />
               </div>
@@ -193,9 +175,10 @@ const AddNewBook = () => {
             <div className="p-2 w-full">
               <button
                 type="submit"
-                className="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg"
+                className="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-700 rounded text-lg"
+                disabled={isLoading ? true : false}
               >
-                Submit
+                {isLoading ? "Loading..." : "Submit"}
               </button>
             </div>
           </form>
