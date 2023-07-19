@@ -8,9 +8,9 @@ import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
-import { useSignUpMutation } from '@/redux/features/user/userApi';
 import { toast } from 'react-toastify';
 import { saveToLocalStorage } from '../utils/localstorage.ts';
+import { useSignUpMutation } from '../redux/features/user/userApi.ts';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
