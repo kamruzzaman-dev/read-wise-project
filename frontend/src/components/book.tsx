@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Link } from 'react-router-dom';
 import { IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
 import { AiOutlineFileDone } from 'react-icons/ai';
@@ -28,9 +29,11 @@ const Book = ({ data }: { data: IBook[] }) => {
     }
   }, [selectedBook]);
 
+
   useEffect(() => {
+    console.log(finishedData)
     if (isSuccess && !isLoading) {
-      Notification('Finished reading status updated successfully', "success")
+      Notification(finishedData?.message, "success")
     }
     if (isError === true && error) {
       Notification(`Something went wrong! Please try again.`, "error")
@@ -68,7 +71,7 @@ const Book = ({ data }: { data: IBook[] }) => {
                   </h2>
                 </div>
                 <div className="flex justify-between items-end">
-                  <p className="mt-1 font-semibold">
+                  <p className="mt-1 font-semibold text-gray-900">
                     Published: {new Date(book.publication_date).toDateString()}
                   </p>
                   {book?.finishedReading === false ? (

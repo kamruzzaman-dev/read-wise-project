@@ -8,7 +8,7 @@ const ReadSoon = () => {
 
   return (
     <div className="container mt-16">
-      <h1 className="text-3xl mb-8 text-center font-semibold">
+      <h1 className="text-4xl mb-16 text-center underline font-medium text-primary">
         Read Soon List
       </h1>
       <Book data={readSoonList?.data?.readSoonList ?? []} />

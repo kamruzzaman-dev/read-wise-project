@@ -11,10 +11,12 @@ import {
   DropdownMenuContent,
 } from '../components/ui/dropdown-menu';
 import { getFromLocalStorage, removeFromLocalStorage } from '../utils/localstorage';
+import { useGetWishlistQuery } from '../redux/features/wishlist/wishlistApi';
 
 
 export default function Navbar() {
   const user = JSON.parse(getFromLocalStorage('user_Information')!);
+  const { data: wishlist } = useGetWishlistQuery(user?._id);
   const handleLogOut = () => {
     removeFromLocalStorage('user_Information');
     removeFromLocalStorage('access-token');
@@ -49,7 +51,8 @@ export default function Navbar() {
                     </Button>
                   </li>
                   <li>
-                    <Button className='hover:text-[#0B666A]' variant="link">
+                    <Button className='hover:text-[#0B666A] relative flex h-3 w-3' variant="link">
+                      <span className="absolute -right-3 -top-3 rounded-full text-xs text-red-500">{wishlist?.data?.wishlist?.length}</span>
                       <Link to="/wishlist">Wishlist</Link>
                     </Button>
                   </li>
