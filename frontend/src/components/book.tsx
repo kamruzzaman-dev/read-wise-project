@@ -10,7 +10,7 @@ import { getFromLocalStorage } from '../utils/localstorage';
 import { useFinishedReadingMutation } from '../redux/features/readSoon/readSoonApi';
 
 const Book = ({ data }: { data: IBook[] }) => {
-  const user = JSON.parse(getFromLocalStorage('user-info')!);
+  const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
   const [selectedBook, setSelectedBook] = useState<IBook | null>(null);
   const [
     finishedReading,

@@ -2,8 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
 import { Button } from '../components/ui/button';
-import { DropdownMenuSeparator } from '../components/ui/dropdown-menu';
-import { DropdownMenuLabel } from '../components/ui/dropdown-menu';
+import { DropdownMenuLabel, DropdownMenuSeparator } from '../components/ui/dropdown-menu';
 import logo from '@/assets/images/logo.png';
 import {
   DropdownMenuItem,
@@ -15,47 +14,47 @@ import { getFromLocalStorage, removeFromLocalStorage } from '../utils/localstora
 
 
 export default function Navbar() {
-  const user = JSON.parse(getFromLocalStorage('user-info')!);
+  const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
   const handleLogOut = () => {
-    removeFromLocalStorage('user-info');
+    removeFromLocalStorage('user_Infomation');
     removeFromLocalStorage('access-token');
     window.location.reload();
   };
   return (
-    <nav className="w-full h-24 fixed top backdrop-blur-lg z-10">
+    <nav className="w-full h-20 fixed top backdrop-blur-lg z-10">
       <div className="h-full w-full bg-white/60">
         <div className="flex items-center justify-between w-full md:max-w-7xl h-full mx-auto ">
           <div>
             <Link to="/">
-              <img className="h-20" src={logo} alt="log" />
+              <img className="h-16" src={logo} alt="log" />
             </Link>
           </div>
           <div>
             <ul className="flex items-center">
               <li>
-                <Button variant="link" asChild>
+                <Button className='hover:text-[#0B666A]' variant="link" asChild>
                   <Link to="/">Home</Link>
                 </Button>
               </li>
               <li>
-                <Button variant="link" asChild>
+                <Button className='hover:text-[#0B666A]' variant="link" asChild>
                   <Link to="/books">Books</Link>
                 </Button>
               </li>
               {user?.email && (
                 <>
                   <li>
-                    <Button variant="link" asChild>
+                    <Button className='hover:text-[#0B666A]' variant="link" asChild>
                       <Link to="/add-new-book">Add New Book</Link>
                     </Button>
                   </li>
                   <li>
-                    <Button variant="link">
+                    <Button className='hover:text-[#0B666A]' variant="link">
                       <Link to="/wishlist">Wishlist</Link>
                     </Button>
                   </li>
                   <li>
-                    <Button variant="link">
+                    <Button className='hover:text-[#0B666A]' variant="link">
                       <Link to="/read-soon">Read soon</Link>
                     </Button>
                   </li>
@@ -74,19 +73,18 @@ export default function Navbar() {
                     </Avatar>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuLabel>Hello User</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
                     {user?.name && (
-                      <DropdownMenuItem className="cursor-pointer">
+                      <DropdownMenuLabel className="cursor-pointer font-bold">
                         {user?.name}
-                      </DropdownMenuItem>
+                      </DropdownMenuLabel>
                     )}
 
                     {user?.email && (
-                      <DropdownMenuItem className="cursor-pointer">
+                      <DropdownMenuLabel className="cursor-pointer">
                         {user?.email}
-                      </DropdownMenuItem>
+                      </DropdownMenuLabel>
                     )}
+                    <DropdownMenuSeparator />
 
                     {!user?.email && (
                       <>
@@ -105,12 +103,19 @@ export default function Navbar() {
                     )}
 
                     {user?.email && (
-                      <DropdownMenuItem
-                        className="cursor-pointer"
-                        onClick={() => handleLogOut()}
-                      >
-                        Log out
-                      </DropdownMenuItem>
+                      <>
+                        <Link to="/profile">
+                          <DropdownMenuItem className="cursor-pointer">
+                            profile
+                          </DropdownMenuItem>
+                        </Link>
+                        <DropdownMenuItem
+                          className="cursor-pointer bg-rose-500	text-stone-50 mt-2"
+                          onClick={() => handleLogOut()}
+                        >
+                          Log out
+                        </DropdownMenuItem>
+                      </>
                     )}
                   </DropdownMenuContent>
                 </DropdownMenu>

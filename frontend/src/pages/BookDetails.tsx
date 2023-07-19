@@ -23,7 +23,7 @@ import { useAddToWishlistMutation, useGetWishlistQuery } from '../redux/features
 
 
 export default function BookDetails() {
-  const user = JSON.parse(getFromLocalStorage('user-info')!);
+  const user = JSON.parse(getFromLocalStorage('user_Infomation')!);
   const [confirmDelete, setConfirmDelete] = useState(false);
   // API
   const [deleteBook, { data, isSuccess, isLoading, isError, error }] =

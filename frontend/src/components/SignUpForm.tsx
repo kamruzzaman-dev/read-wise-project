@@ -70,7 +70,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
         theme: 'light',
       });
       saveToLocalStorage('access-token', data.data.accessToken);
-      saveToLocalStorage('user-info', JSON.stringify(data?.data?.result));
+      saveToLocalStorage('user_Infomation', JSON.stringify(data?.data?.result));
     }
 
     if (isError === true && error) {
