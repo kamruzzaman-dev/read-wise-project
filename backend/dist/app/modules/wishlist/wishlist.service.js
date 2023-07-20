@@ -18,8 +18,8 @@ const http_status_1 = __importDefault(require("http-status"));
 const apiError_1 = __importDefault(require("../../../errors/apiError"));
 const wishlist_model_1 = require("./wishlist.model");
 const user_model_1 = require("../user/user.model");
-const getWishlist = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield wishlist_model_1.Wishlist.findOne({ userId: id });
+const getWishlist = (requestedUser) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield wishlist_model_1.Wishlist.findOne({ userId: requestedUser.id });
     return result;
 });
 const addToWishlist = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {

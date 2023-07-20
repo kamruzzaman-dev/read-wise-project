@@ -18,8 +18,8 @@ const http_status_1 = __importDefault(require("http-status"));
 const apiError_1 = __importDefault(require("../../../errors/apiError"));
 const readSoon_model_1 = require("./readSoon.model");
 const user_model_1 = require("../user/user.model");
-const getReadSoonList = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield readSoon_model_1.ReadSoon.findOne({ userId: id });
+const getReadSoonList = (requestedUser) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield readSoon_model_1.ReadSoon.findOne({ userId: requestedUser.id });
     return result;
 });
 const addToReadSoonList = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
