@@ -7,7 +7,7 @@ const ReadSoon = () => {
   const { data: readSoonList } = useGetReadSoonListQuery(user?._id);
 
   return (
-    <div className="container mt-16">
+    <div className="container mt-16 min-h-[60vh]">
       <h1 className="text-4xl mb-16 text-center underline font-medium text-primary">
         Read Soon List
       </h1>
