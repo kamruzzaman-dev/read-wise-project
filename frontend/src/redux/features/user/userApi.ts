@@ -9,6 +9,7 @@ const userApi = api.injectEndpoints({
         body: data,
       }),
     }),
+
     login: builder.mutation({
       query: (data) => ({
         url: `/auth/login`,
@@ -23,8 +24,21 @@ const userApi = api.injectEndpoints({
         body: data,
       }),
     }),
+    addGoogleAuth: builder.mutation({
+      query: (body) => ({
+        url: '/auth/google_auth',
+        method: 'POST',
+        body: {
+          tokenId: body,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useSignUpMutation, useLoginMutation, useRefreshTokenMutation } =
-  userApi;
+export const {
+  useSignUpMutation,
+  useLoginMutation,
+  useRefreshTokenMutation,
+  useAddGoogleAuthMutation,
+} = userApi;

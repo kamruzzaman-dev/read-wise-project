@@ -10,6 +10,8 @@ import { Input } from './ui/input.tsx';
 import { Button } from './ui/button.tsx';
 import { cn } from '../lib/utils.ts';
 import { Notification } from './ui/notification.tsx';
+import GoogleLogin from 'react-google-login';
+import { useGoogleAuth } from '../hooks/useGoogleAuth.tsx';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -28,6 +30,9 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
   // API call
   const [signUp, { data, isError, isLoading, isSuccess, error }] =
     useSignUpMutation();
+
+  // log in with google Oauth
+  const { responseErrorGoogle, responseSuccessGoogle, isLoading: loading } = useGoogleAuth();
 
   // react hook form
   const {
@@ -151,14 +156,19 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <Button
-        variant="outline"
-        type="button"
-        className="flex items-center justify-between"
-      >
-        <p>Google</p>
-        <FcGoogle />
-      </Button>
+      <GoogleLogin
+        clientId="733785501526-kf7fkkbo5i29t9kjq2npllh2fd14fvhj.apps.googleusercontent.com"
+        render={renderProps => (
+          <button onClick={renderProps.onClick} className="inline-flex items-center p-2 justify-between rounded-md bg-secondary" disabled={renderProps.disabled}>
+            <p>{loading ? "Loading..." : "Sign in with Google"}</p>
+            <FcGoogle />
+          </button>
+        )}
+        buttonText="Login"
+        onSuccess={responseSuccessGoogle}
+        onFailure={responseErrorGoogle}
+        cookiePolicy={'single_host_origin'}
+      />
     </div>
   );
 }

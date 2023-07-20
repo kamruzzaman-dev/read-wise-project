@@ -13,6 +13,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { saveToLocalStorage } from '../utils/localstorage.ts';
 import { useLoginMutation } from '../redux/features/user/userApi.ts';
 import { Notification } from './ui/notification.tsx';
+import { useGoogleAuth } from '../hooks/useGoogleAuth.tsx';
+import GoogleLogin from "react-google-login";
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -27,6 +29,9 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
   // API call
   const [login, { data, isError, isLoading, isSuccess, error }] =
     useLoginMutation();
+
+  // log in with google Oauth
+  const { responseErrorGoogle, responseSuccessGoogle, isLoading: loading } = useGoogleAuth();
 
   const {
     register,
@@ -98,14 +103,20 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <Button
-        variant="outline"
-        type="button"
-        className="flex items-center justify-between"
-      >
-        <p>Google</p>
-        <FcGoogle />
-      </Button>
+      <GoogleLogin
+        clientId="733785501526-kf7fkkbo5i29t9kjq2npllh2fd14fvhj.apps.googleusercontent.com"
+        render={renderProps => (
+          <button onClick={renderProps.onClick} className="inline-flex items-center p-2 justify-between rounded-md bg-secondary" disabled={renderProps.disabled}>
+            <p>{loading ? "Loading..." : "Sign in with Google"}</p>
+            <FcGoogle />
+          </button>
+        )}
+        buttonText="Login"
+        onSuccess={responseSuccessGoogle}
+        onFailure={responseErrorGoogle}
+        cookiePolicy={'single_host_origin'}
+      />
+      {/* document.getElementById('googleButton') */}
     </div>
   );
 }
