@@ -68,8 +68,8 @@ Some screenshots of the project from different types of users are available in t
 
 #### home page:
 
-![](./screenshots/home_book.jpg)
 ![](./screenshots/home_page.jpg)
+![](./screenshots/home_book.jpg)
 
 #### Books page with search, filtering:
 
