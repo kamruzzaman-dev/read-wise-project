@@ -6,7 +6,7 @@ export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     // baseUrl: 'http://localhost:5000/api/v1',
-    baseUrl: 'https://read-wise.onrender.comapi/api/v1',
+    baseUrl: 'https://read-wise.onrender.com/api/v1',
     prepareHeaders: (headers) => {
       headers.set('authorization', getFromLocalStorage('access-token')!);
       return headers;
