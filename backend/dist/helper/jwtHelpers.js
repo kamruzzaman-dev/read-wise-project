@@ -8,7 +8,10 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const createToken = (payload, secret, expireTime) => {
     return jsonwebtoken_1.default.sign(payload, secret, { expiresIn: expireTime });
 };
-const verifyToken = (token, secret) => {
+// const verifyToken = (token: string, secret: Secret): JwtPayload => {
+//   return jwt.verify(token, secret) as JwtPayload
+// }
+const verifyToken = (token = `'hello'`, secret) => {
     return jsonwebtoken_1.default.verify(token, secret);
 };
 exports.jwtHelpers = {
