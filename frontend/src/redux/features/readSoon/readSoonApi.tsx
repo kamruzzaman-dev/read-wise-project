@@ -20,7 +20,7 @@ const readSoonApi = api.injectEndpoints({
     }),
     getReadSoonList: builder.query({
       query: (id) => ({
-        url: `/readSoon/${id}`,
+        url: `/readSoon`,
         method: 'GET',
       }),
       providesTags: ['books'],

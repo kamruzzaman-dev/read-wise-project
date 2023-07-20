@@ -6,8 +6,8 @@ import { IReadSoon } from './readSoon.interface'
 import { ReadSoonListService } from './readSoon.service'
 
 const getReadSoonList: RequestHandler = catchAsync(async (req, res) => {
-  const id = req.params.id
-  const result = await ReadSoonListService.getReadSoonList(id)
+  const { ...requestedUser } = req.user
+  const result = await ReadSoonListService.getReadSoonList(requestedUser)
 
   sendResponse<IReadSoon>(res, {
     statusCode: httpStatus.OK,

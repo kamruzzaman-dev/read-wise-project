@@ -6,22 +6,16 @@ import { readSoonListValidation } from './readSoon.validation'
 import { readSoonController } from './readSoon.controller'
 const router = express.Router()
 
-router.get(
-  '/:id',
-  auth(ENUM_USER_ROLE.USER),
-  readSoonController.getReadSoonList
-)
+router.get('/', auth(ENUM_USER_ROLE.USER), readSoonController.getReadSoonList)
 
 router.patch(
   '/:id',
-  auth(ENUM_USER_ROLE.USER),
   validateRequest(readSoonListValidation.ReadSoonListZodSchema),
   readSoonController.addToReadSoonList
 )
 
 router.patch(
   '/finished-reading/:id',
-  auth(ENUM_USER_ROLE.USER),
   validateRequest(readSoonListValidation.finishedReadingZodSchema),
   readSoonController.finishedReading
 )

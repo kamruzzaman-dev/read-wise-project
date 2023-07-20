@@ -6,8 +6,10 @@ import { IReadSoon } from './readSoon.interface'
 import { ReadSoon } from './readSoon.model'
 import { User } from '../user/user.model'
 
-const getReadSoonList = async (id: string): Promise<IReadSoon | null> => {
-  const result = await ReadSoon.findOne({ userId: id })
+const getReadSoonList = async (
+  requestedUser: any
+): Promise<IReadSoon | null> => {
+  const result = await ReadSoon.findOne({ userId: requestedUser.id })
   return result
 }
 

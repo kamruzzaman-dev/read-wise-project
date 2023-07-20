@@ -12,7 +12,7 @@ const wishlistApi = api.injectEndpoints({
     }),
     getWishlist: builder.query({
       query: (id) => ({
-        url: `/wishlist/${id}`,
+        url: `/wishlist`,
         method: 'GET',
       }),
       providesTags: ['books'],

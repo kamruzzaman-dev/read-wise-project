@@ -1,37 +1,37 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import httpStatus from 'http-status';
-import ApiError from '../../../errors/apiError';
-import { IWishlist } from './wishlist.interface';
-import { Wishlist } from './wishlist.model';
-import { User } from '../user/user.model';
+import httpStatus from 'http-status'
+import ApiError from '../../../errors/apiError'
+import { IWishlist } from './wishlist.interface'
+import { Wishlist } from './wishlist.model'
+import { User } from '../user/user.model'
 
-const getWishlist = async (id: string): Promise<IWishlist | null> => {
-  const result = await Wishlist.findOne({ userId: id });
+const getWishlist = async (requestedUser: any): Promise<IWishlist | null> => {
+  const result = await Wishlist.findOne({ userId: requestedUser.id })
 
-  return result;
-};
+  return result
+}
 
 const addToWishlist = async (
   id: string,
   payload: Partial<IWishlist>
 ): Promise<IWishlist | null> => {
-  const isExist = await User.findOne({ _id: payload?.userId });
+  const isExist = await User.findOne({ _id: payload?.userId })
 
   if (!isExist) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'user not found');
+    throw new ApiError(httpStatus.BAD_REQUEST, 'user not found')
   }
 
-  const isWishlistExists = await Wishlist.findOne({ userId: isExist?._id });
+  const isWishlistExists = await Wishlist.findOne({ userId: isExist?._id })
 
-  let result;
+  let result
   if (!isWishlistExists) {
     const data = {
       userId: isExist?._id,
       email: isExist?.email,
       wishlist: payload?.bookId,
-    };
-    result = await Wishlist.create(data);
+    }
+    result = await Wishlist.create(data)
   } else {
     result = await Wishlist.findOneAndUpdate(
       { userId: isExist?._id },
@@ -39,13 +39,13 @@ const addToWishlist = async (
       {
         new: true,
       }
-    );
+    )
   }
 
-  return result;
-};
+  return result
+}
 
 export const WishlistService = {
   getWishlist,
   addToWishlist,
-};
+}
