@@ -1,4 +1,4 @@
-# read wise
+# [read wise](https://kamruzzaman-read-wise.netlify.app/)
 
 _A simple book reading, rating, or reviewing system._
 
