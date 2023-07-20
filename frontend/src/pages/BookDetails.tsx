@@ -110,6 +110,7 @@ export default function BookDetails() {
 
   const handleAddToWishlist = () => {
     if (!user) {
+      Notification('please login', "error")
       return;
     }
     if (alreadyAddedToWishlist) {
@@ -132,10 +133,11 @@ export default function BookDetails() {
 
   const handleAddToReadSoon = () => {
     if (!user) {
+      Notification('please login', "error")
       return;
     }
     if (alreadyAddedToReadSoonList) {
-      Notification('Already added to wishlist.', "error")
+      Notification('Already added to Read soon list.', "error")
       return;
     }
 

@@ -10,9 +10,9 @@ import { cn } from '../lib/utils.ts';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { saveToLocalStorage } from '../utils/localstorage.ts';
 import { useLoginMutation } from '../redux/features/user/userApi.ts';
+import { Notification } from './ui/notification.tsx';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -46,31 +46,13 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
       } else {
         navigate('/');
       }
-      toast.success('You have logged in successfully.', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification("You have logged in successfully.", "success")
       saveToLocalStorage('access-token', data?.data?.accessToken);
       saveToLocalStorage('user_Information', JSON.stringify(data?.data?.userData));
     }
     if (isError === true && error) {
       if ('data' in error) {
-        toast.error(`${(error as any).data!.message}`, {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
+        Notification((error as any).data!.message, "error")
       }
     }
   }, [isLoading, navigate, state, isSuccess, error, isError, data]);

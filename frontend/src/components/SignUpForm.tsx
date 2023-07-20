@@ -3,13 +3,13 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { saveToLocalStorage } from '../utils/localstorage.ts';
 import { useSignUpMutation } from '../redux/features/user/userApi.ts';
 import { Label } from './ui/label.tsx';
 import { Input } from './ui/input.tsx';
 import { Button } from './ui/button.tsx';
 import { cn } from '../lib/utils.ts';
+import { Notification } from './ui/notification.tsx';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -59,35 +59,16 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
   React.useEffect(() => {
     if (isSuccess && !isLoading) {
       navigate('/');
-      toast.success('You have signed up successfully.', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification("You have signed in successfully.", "success")
       saveToLocalStorage('access-token', data.data.accessToken);
       saveToLocalStorage('user_Information', JSON.stringify(data?.data?.result));
     }
 
     if (isError === true && error) {
-      toast.error(`Something went wrong! Please try again.`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      Notification("Something went wrong! Please try again.", "error")
     }
   }, [isError, isLoading, isSuccess, navigate, error, data]);
 
-  // console.log(isError, error, isLoading, isSuccess);
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
