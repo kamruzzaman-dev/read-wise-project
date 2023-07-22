@@ -32,7 +32,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {data?.data ? <h1 className='text-6xl font-black text-primary mb-12 underline'>Best Books</h1> : ''}
+          {data?.data ? <h1 className='text-5xl font-black text-primary mb-12 underline'>Latest Books</h1> : ''}
           <Book data={data?.data ?? []} />
         </div>
       )}

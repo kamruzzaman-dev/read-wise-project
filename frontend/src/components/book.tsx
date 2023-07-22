@@ -39,14 +39,12 @@ const Book = ({ data }: { data: IBook[] }) => {
     }
   }, [isLoading, error, isError, isSuccess]);
 
-  // console.log(isError, isLoading, finishedData, error);
-
   return (
-    <section className="text-gray-600 body-font">
+    <section className="text-gray-600 body-font min-h-[40vh]">
       <div className="pb-24 mx-auto">
         <div className="flex flex-wrap -m-4">
           {data?.map((book: IBook, i: number) => (
-            <div key={i} className="lg:w-1/4 md:w-1/2 p-4 w-full relative">
+            <div key={i} className="lg:w-1/4 md:w-1/2 p-4 w-full relative hover:shadow-lg hover:border-t-1">
               <Link
                 to={`/book-details/${book?._id}`}
                 className="block cursor-pointer h-48 rounded overflow-hidden"
@@ -58,11 +56,11 @@ const Book = ({ data }: { data: IBook[] }) => {
                 />
               </Link>
               <h3 className="text-gray-500 absolute p-1 backdrop-blur-xl text-stone-50 bg-red-500 top-4 left-4 text-xs tracking-widest title-font mb-1">
-                @{book.genre}
+                #{book.genre}
               </h3>
               <div className="mt-3">
                 <div className="flex justify-between items-center">
-                  <h2 className="text-gray-900 title-font text-lg font-medium">
+                  <h2 className="text-gray-900 title-font text-md font-medium">
                     {book.title}
                   </h2>
                   <h2 className="text-gray-900 title-font text-base font-medium">

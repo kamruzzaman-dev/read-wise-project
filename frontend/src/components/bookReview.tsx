@@ -8,6 +8,7 @@ import { Input } from './ui/input';
 import { getFromLocalStorage } from '../utils/localstorage';
 import { useAddReviewMutation } from '../redux/features/book/bookApi';
 import { Notification } from './ui/notification';
+import { Textarea } from './ui/textarea';
 
 export default function BookReview(book: any) {
   const [inputValue, setInputValue] = useState<string>('');
@@ -39,7 +40,7 @@ export default function BookReview(book: any) {
     setInputValue('');
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(event.target.value);
   };
 
@@ -57,7 +58,7 @@ export default function BookReview(book: any) {
   return (
     <div className="max-w-7xl mx-auto mt-5">
       <form className="flex gap-5 items-center" onSubmit={handleSubmit}>
-        <Input
+        <Textarea
           className="border-2 border-[#0B666A] h-24"
           onChange={handleChange}
           value={inputValue}

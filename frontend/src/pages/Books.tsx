@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Select,
   SelectContent,
@@ -12,35 +12,43 @@ import { IBook } from '../types/globalTypes';
 import { useGetBooksQuery } from '../redux/features/book/bookApi';
 import { Input } from '../components/ui/input';
 import Book from '../components/book';
+import PulseLoading from '../components/PulseLoading';
 
 const Books = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [showingBooks, setShowingBooks] = useState<IBook[]>([]); // Explicitly define the type as an array of Book
   const [searchQuery, setSearchQuery] = useState({
     queryString: '',
     genre: '',
     year: '',
+    page: 1,
+    limit: 8,
   });
   const searchQueryUrl = () => {
     let url = '';
     if (searchQuery.genre && searchQuery.queryString && searchQuery.year) {
-      url = `genre=${searchQuery.genre}&searchTerm=${searchQuery.queryString}&publication_year=${searchQuery.year}`;
+      url = `genre=${searchQuery.genre}&searchTerm=${searchQuery.queryString}&publication_year=${searchQuery.year}&limit=${searchQuery.limit}`;
     } else if (searchQuery.genre && searchQuery.queryString) {
-      url = `genre=${searchQuery.genre}&searchTerm=${searchQuery.queryString}`;
+      url = `genre=${searchQuery.genre}&searchTerm=${searchQuery.queryString}&limit=${searchQuery.limit}`;
     } else if (searchQuery.genre && searchQuery.year) {
-      url = `genre=${searchQuery.genre}&publication_year=${searchQuery.year}`;
+      url = `genre=${searchQuery.genre}&publication_year=${searchQuery.year}&limit=${searchQuery.limit}`;
     } else if (searchQuery.queryString && searchQuery.year) {
-      url = `searchTerm=${searchQuery.queryString}&publication_year=${searchQuery.year}`;
+      url = `searchTerm=${searchQuery.queryString}&publication_year=${searchQuery.year}&limit=${searchQuery.limit}`;
     } else if (searchQuery.genre) {
-      url = `genre=${searchQuery.genre}`;
+      url = `genre=${searchQuery.genre}&limit=${searchQuery.limit}`;
     } else if (searchQuery.queryString) {
-      url = `searchTerm=${searchQuery.queryString}`;
+      url = `searchTerm=${searchQuery.queryString}&limit=${searchQuery.limit}`;
     } else if (searchQuery.year) {
-      url = `publication_year=${searchQuery.year}`;
+      url = `publication_year=${searchQuery.year}&limit=${searchQuery.limit}`;
+    } else if (searchQuery.page) {
+      url = `page=${searchQuery.page}&limit=${searchQuery.limit}`;
     }
     return url;
   };
 
   const url = searchQueryUrl();
+  console.log(url);
 
   const { data, isLoading } = useGetBooksQuery(url);
   const { data: filterData } = useGetBooksQuery('');
@@ -65,10 +73,44 @@ const Books = () => {
       b.publication_year.localeCompare(a.publication_year)
     );
 
+  useEffect(() => {
+    console.log('Route changed:', location.pathname);
+    setShowingBooks([])
+  }, [location.pathname, searchQuery.genre, searchQuery.queryString, searchQuery.year]);
+
+  useEffect(() => {
+    if (data) {
+      setShowingBooks((prevBooks) => [...prevBooks, ...data?.data ?? "default value"])
+    }
+  }, [data]);
+
+  /* book loading for next 10 pice */
+  const handelInfiniteScroll = async () => {
+    try {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 1 >=
+        document.documentElement.scrollHeight
+      ) {
+        // setLoading(true);
+        setSearchQuery({
+          ...searchQuery,
+          page: searchQuery.page + 1,
+        })
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handelInfiniteScroll);
+    return () => window.removeEventListener("scroll", handelInfiniteScroll);
+  }, []);
+
   if (isLoading) {
     <div>Loading...</div>;
   }
-
+  console.log(showingBooks);
   return (
     <>
       {isLoading ? (
@@ -136,15 +178,16 @@ const Books = () => {
                 </SelectGroup>
               </SelectContent>
             </Select>
+            <button
+              type="submit"
+              onClick={() => navigate('/add-new-book')}
+              className="flex items-end self-end mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-10"
+            >
+              Add Book
+            </button>
           </div>
-          <Book data={data?.data ?? []} />
-          <button
-            type="submit"
-            onClick={() => navigate('/add-new-book')}
-            className="flex mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-10"
-          >
-            Add Book
-          </button>
+          <Book data={showingBooks ?? []} />
+          {isLoading && <PulseLoading />}
         </div>
       )}
     </>
