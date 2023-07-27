@@ -1,4 +1,4 @@
-# [read wise](https://kamruzzaman-read-wise.netlify.app/)
+# [read wise](https://read-wise-project-b2dcz168v-yebenling-zaman.vercel.app/)
 
 _A simple book reading, rating, or reviewing system._
 
