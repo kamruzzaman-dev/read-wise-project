@@ -74,7 +74,7 @@ const Books = () => {
     );
 
   useEffect(() => {
-    console.log('Route changed:', location.pathname);
+    // console.log('Route changed:', location.pathname);
     setShowingBooks([])
   }, [location.pathname, searchQuery.genre, searchQuery.queryString, searchQuery.year]);
 
