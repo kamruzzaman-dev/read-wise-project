@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSingleBookQuery, useUpdateBookMutation } from '../redux/features/book/bookApi';
-import { getFromLocalStorage } from '../utils/localstorage';
+import { getFromLocalStorage } from '../utils/localStorage.ts';
 
 const EditBook = () => {
   // Get the book data first

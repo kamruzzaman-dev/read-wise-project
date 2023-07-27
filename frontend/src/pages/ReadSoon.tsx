@@ -1,6 +1,6 @@
 import Book from "../components/book";
 import { useGetReadSoonListQuery } from "../redux/features/readSoon/readSoonApi";
-import { getFromLocalStorage } from "../utils/localstorage";
+import { getFromLocalStorage } from "../utils/localStorage.ts";
 
 const ReadSoon = () => {
   const user = JSON.parse(getFromLocalStorage('user_Information')!);

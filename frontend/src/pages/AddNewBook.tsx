@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAddBookMutation } from '../redux/features/book/bookApi';
-import { getFromLocalStorage } from '../utils/localstorage';
+import { getFromLocalStorage } from '../utils/localStorage.ts';
 import { Notification } from '../components/ui/notification';
 
 const AddNewBook = () => {

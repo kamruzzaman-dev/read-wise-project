@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import Book from "../components/book";
 import { useGetWishlistQuery } from "../redux/features/wishlist/wishlistApi";
-import { getFromLocalStorage } from "../utils/localstorage";
+import { getFromLocalStorage } from "../utils/localStorage.ts";
 
 
 const Wishlist = () => {

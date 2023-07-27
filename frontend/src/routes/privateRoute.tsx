@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { getFromLocalStorage } from '../utils/localstorage';
+import { getFromLocalStorage } from '../utils/localStorage.ts';
 
 interface IProps {
   children: ReactNode;

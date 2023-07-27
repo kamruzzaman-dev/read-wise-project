@@ -4,7 +4,7 @@ import { IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
 import { AiOutlineFileDone } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { IBook } from '../types/globalTypes';
-import { getFromLocalStorage } from '../utils/localstorage';
+import { getFromLocalStorage } from '../utils/localStorage.ts';
 import { useFinishedReadingMutation } from '../redux/features/readSoon/readSoonApi';
 import { Notification } from './ui/notification';
 

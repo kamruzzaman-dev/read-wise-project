@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { getFromLocalStorage } from '../../utils/localstorage';
+import { getFromLocalStorage } from '../../utils/localStorage.ts';
 
 export const api = createApi({
   reducerPath: 'api',

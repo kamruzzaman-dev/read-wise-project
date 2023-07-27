@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { gapi } from "gapi-script";
 import { useAddGoogleAuthMutation } from "../redux/features/user/userApi";
-import { saveToLocalStorage } from "../utils/localstorage";
+import { saveToLocalStorage } from "../utils/localStorage.ts";
 import { Notification } from "../components/ui/notification";
 
 export function useGoogleAuth() {

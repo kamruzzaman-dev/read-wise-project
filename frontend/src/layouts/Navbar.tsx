@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
 } from '../components/ui/dropdown-menu';
-import { getFromLocalStorage, removeFromLocalStorage } from '../utils/localstorage';
+import { getFromLocalStorage, removeFromLocalStorage } from '../utils/localStorage.ts';
 import { useGetWishlistQuery } from '../redux/features/wishlist/wishlistApi';
 
 

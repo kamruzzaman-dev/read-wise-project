@@ -13,7 +13,7 @@ import {
   AlertDialogTrigger,
 } from '../components/ui/altert-dialog';
 import { useEffect, useState } from 'react';
-import { getFromLocalStorage } from '../utils/localstorage';
+import { getFromLocalStorage } from '../utils/localStorage.ts';
 import { useDeleteBookMutation, useSingleBookQuery } from '../redux/features/book/bookApi';
 import { useAddToReadSoonMutation, useGetReadSoonListQuery } from '../redux/features/readSoon/readSoonApi';
 import { IBook } from '../types/globalTypes';

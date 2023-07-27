@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
-import { saveToLocalStorage } from '../utils/localstorage.ts';
+import { saveToLocalStorage } from '../utils/localStorage.ts';
 import { useSignUpMutation } from '../redux/features/user/userApi.ts';
 import { Label } from './ui/label.tsx';
 import { Input } from './ui/input.tsx';

@@ -10,7 +10,7 @@ import { cn } from '../lib/utils.ts';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { saveToLocalStorage } from '../utils/localstorage.ts';
+import { saveToLocalStorage } from '../utils/localStorage.ts';
 import { useLoginMutation } from '../redux/features/user/userApi.ts';
 import { Notification } from './ui/notification.tsx';
 import { useGoogleAuth } from '../hooks/useGoogleAuth.tsx';

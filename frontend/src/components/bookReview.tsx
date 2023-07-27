@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 import { FiSend } from 'react-icons/fi';
 import { Input } from './ui/input';
-import { getFromLocalStorage } from '../utils/localstorage';
+import { getFromLocalStorage } from '../utils/localStorage.ts';
 import { useAddReviewMutation } from '../redux/features/book/bookApi';
 import { Notification } from './ui/notification';
 import { Textarea } from './ui/textarea';
