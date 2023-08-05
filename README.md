@@ -1,4 +1,4 @@
-# [read wise](https://read-wise-project-b2dcz168v-yebenling-zaman.vercel.app/)
+# [read wise](https://read-wise-project.vercel.app/)
 
 _A simple book reading, rating, or reviewing system._
 
